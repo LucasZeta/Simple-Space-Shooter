@@ -1,5 +1,0 @@
-[C:\Users\Public\Documents\Ethanon\Moving-Spaceship\eth.log.txt]
-Backbuffer created as 854, 480
-Loading game script from source-code: main.angelscript
-Compile time: 47 milliseconds
-(Loaded) spaceship.png
