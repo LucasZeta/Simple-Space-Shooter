@@ -14,18 +14,19 @@ void main()
 void ETHCallback_spaceship(ETHEntity@ thisEntity)
 {
     ETHInput@ input = GetInputHandle();
+    float speed = UnitsPerSecond(120.0f);
 
     if (input.KeyDown(K_RIGHT))
-        thisEntity.AddToPositionXY(vector2(2.0f, 0.0f));
+        thisEntity.AddToPositionXY(vector2(1.0f, 0.0f) * speed);
 
     if (input.KeyDown(K_LEFT))
-        thisEntity.AddToPositionXY(vector2(-2.0f, 0.0f));
+        thisEntity.AddToPositionXY(vector2(-1.0f, 0.0f) * speed);
 
     if (input.KeyDown(K_UP))
-        thisEntity.AddToPositionXY(vector2(0.0f,-2.0f));
+        thisEntity.AddToPositionXY(vector2(0.0f,-1.0f) * speed);
 
     if (input.KeyDown(K_DOWN))
-        thisEntity.AddToPositionXY(vector2(0.0f, 2.0f));
+        thisEntity.AddToPositionXY(vector2(0.0f, 1.0f) * speed);
 
     if (input.GetKeyState(K_SPACE) == KS_HIT)
         AddEntity("shot.ent",thisEntity.GetPosition());
