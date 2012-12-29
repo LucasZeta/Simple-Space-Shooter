@@ -5,10 +5,20 @@ Hello world!
 
 void main()
 {
-    LoadScene("scenes/first_scene.esc", "", "");
+    LoadScene("scenes/first_scene.esc", "onSceneLoaded");
 
     // Prefer setting window properties in the app.enml file
     // SetWindowProperties("Ethanon Engine", 1024, 768, true, true, PF32BIT);
+}
+
+void onSceneLoaded()
+{
+    LoadSoundEffect("soundfx/shoot.mp3");
+
+    LoadMusic("soundfx/soundtrack.mp3");
+    LoopSample("soundfx/soundtrack.mp3", true);
+
+    PlaySample("soundfx/soundtrack.mp3");
 }
 
 void ETHCallback_spaceship(ETHEntity@ thisEntity)
@@ -29,7 +39,10 @@ void ETHCallback_spaceship(ETHEntity@ thisEntity)
         thisEntity.AddToPositionXY(vector2(0.0f, 1.0f) * speed);
 
     if (input.GetKeyState(K_SPACE) == KS_HIT)
+    {
         AddEntity("shot.ent",thisEntity.GetPosition());
+        PlaySample("soundfx/shoot.mp3");
+    }
 }
 
 void ETHCallback_shot(ETHEntity@ thisEntity)
