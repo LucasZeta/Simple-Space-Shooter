@@ -34,4 +34,9 @@ void ETHCallback_spaceship(ETHEntity@ thisEntity)
 void ETHCallback_shot(ETHEntity@ thisEntity)
 {
     thisEntity.AddToPositionXY(vector2(0.0f,-15.0f));
+
+    if (thisEntity.GetPosition().y < 0.0f)
+    {
+        DeleteEntity(thisEntity);
+    }
 }
