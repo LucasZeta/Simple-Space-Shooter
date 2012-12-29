@@ -14,6 +14,11 @@ void main()
 void onSceneLoaded()
 {
     LoadSoundEffect("soundfx/shoot.mp3");
+
+    LoadMusic("soundfx/soundtrack.mp3");
+    LoopSample("soundfx/soundtrack.mp3", true);
+
+    PlaySample("soundfx/soundtrack.mp3");
 }
 
 void ETHCallback_spaceship(ETHEntity@ thisEntity)
