@@ -26,4 +26,12 @@ void ETHCallback_spaceship(ETHEntity@ thisEntity)
 
     if (input.KeyDown(K_DOWN))
         thisEntity.AddToPositionXY(vector2(0.0f, 2.0f));
+
+    if (input.GetKeyState(K_SPACE) == KS_HIT)
+        AddEntity("shot.ent",thisEntity.GetPosition());
+}
+
+void ETHCallback_shot(ETHEntity@ thisEntity)
+{
+    thisEntity.AddToPositionXY(vector2(0.0f,-15.0f));
 }
