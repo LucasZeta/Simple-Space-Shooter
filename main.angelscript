@@ -2,16 +2,17 @@
 Hello world!
 */
 #include "eth_util.angelscript"
+#include "isPointInRect.angelscript"
 
 void main()
 {
-    LoadScene("scenes/first_scene.esc", "onSceneLoaded");
+    LoadScene("scenes/menu.esc");
 
     // Prefer setting window properties in the app.enml file
     // SetWindowProperties("Ethanon Engine", 1024, 768, true, true, PF32BIT);
 }
 
-void onSceneLoaded()
+void onGameSceneLoaded()
 {
     LoadSoundEffect("soundfx/shoot.mp3");
 
@@ -53,5 +54,20 @@ void ETHCallback_shot(ETHEntity@ thisEntity)
     if (thisEntity.GetPosition().y < 0.0f)
     {
         DeleteEntity(thisEntity);
+    }
+}
+
+void ETHCallback_start_button(ETHEntity@ thisEntity)
+{
+    vector2 size = thisEntity.GetSize();
+
+    ETHInput@ input = GetInputHandle();
+
+    if (input.GetTouchState(0) == KS_HIT)
+    {
+        if (isPointInRect(input.GetTouchPos(0), thisEntity.GetPositionXY(), size, vector2(0.5f, 0.5f)))
+        {
+            LoadScene("scenes/game.esc", "onGameSceneLoaded");
+        }
     }
 }
