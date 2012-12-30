@@ -59,15 +59,29 @@ void ETHCallback_shot(ETHEntity@ thisEntity)
 
 void ETHCallback_start_button(ETHEntity@ thisEntity)
 {
-    vector2 size = thisEntity.GetSize();
+    if (hasBeenClicked(thisEntity))
+        LoadScene("scenes/game.esc", "onGameSceneLoaded");
+}
+
+void ETHCallback_return_button(ETHEntity@ thisEntity)
+{
+    if (hasBeenClicked(thisEntity))
+    {
+        StopSample("soundfx/shoot.mp3");
+        StopSample("soundfx/soundtrack.mp3");
+
+        LoadScene("scenes/menu.esc");
+    }
+}
+
+bool hasBeenClicked(ETHEntity@ entity)
+{
+    vector2 size = entity.GetSize();
 
     ETHInput@ input = GetInputHandle();
 
     if (input.GetTouchState(0) == KS_HIT)
-    {
-        if (isPointInRect(input.GetTouchPos(0), thisEntity.GetPositionXY(), size, vector2(0.5f, 0.5f)))
-        {
-            LoadScene("scenes/game.esc", "onGameSceneLoaded");
-        }
-    }
+        return (isPointInRect(input.GetTouchPos(0), entity.GetPositionXY(), size, vector2(0.5f, 0.5f)));
+
+    return false;
 }
